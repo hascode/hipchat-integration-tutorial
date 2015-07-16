@@ -28,12 +28,17 @@ app.post('/install', function(req, res){
 
 // on-message hook
 app.post('/message', function(req, res){
-	console.log('message received');
+	console.log('new search request received');
 	console.dir(req.body);
+	
+	var term = req.body.item.message.message.split(' ')[1];
+	console.log('searching for given term: '+term);
+	
+	var message = "<a href=\"http://www.hascode.com/\">hasCode.com</a> blog articles for given term: <b>&quot;"+term+"&quot;</b>:";
 	
 	
 	res.writeHead(200, {'Content-Type': 'application/json'});
-	res.end(JSON.stringify({ "color": "green", "message": "Blog articles for given term: ", "notify": false, "message_format": "text" }));	
+	res.end(JSON.stringify({ "color": "green", "message": message, "notify": false, "message_format": "html" }));	
 });
 
 app.listen(port);

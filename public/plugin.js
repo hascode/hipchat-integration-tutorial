@@ -13,11 +13,11 @@
 			"view_messages"
 		]},
 		"installable": {
-			"callbackUrl": "http://c07269ba.ngrok.io/install"
+			"callbackUrl": "http://e460849f.ngrok.io/install"
 		},
 		"webhook": {
-			"url": "http://c07269ba.ngrok.io/message",
-			"pattern": "^/hascode .+",
+			"url": "http://e460849f.ngrok.io/message",
+			"pattern": "^/hascode",
 			"event": "room_message",
 			"name": "Message Listener"
 		}
