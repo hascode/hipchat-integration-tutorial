@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 
 var basePath = '/wp-content/byTag.php?tag=';
 var port = process.argv[2] || 8080;
+var maxResults = process.argv[3] || 10;
 var options = {
   host: 'www.hascode.com',
   path: '/',
@@ -56,13 +57,15 @@ app.post('/message', function(req, res){
 		
 		clientResponse.on('end', function() {
 			var hits = JSON.parse(output);
-			console.log(hits.length+' results for term '+term+' found');
+			console.log(hits.length+' results for term '+term+' found, max-results set to: '+maxResults);
 			message+=' ('+hits.length+' hits) <ul>'; 
-			message += hits.reduce(function(prev, cur){
-				var item = '<li><a href="'+cur.url+'">'+cur.title+'</a></li>';
-				return prev ? prev+item : ""+item;
+			message += hits.slice(0, maxResults).reduce(function(prev, cur){
+				return (typeof prev === 'object') ? createMessage(prev) + createMessage(cur) : prev+createMessage(cur);
 			});
 			message+='</ul>';
+			if(hits.length>maxResults){
+				message+='<b><a href="http://www.hascode.com/tag/'+term+'">Show all results for &quot;'+term+'&quot;</a></b>'
+			}
 			res.writeHead(200, {'Content-Type': 'application/json'});
 			res.end(JSON.stringify({ "color": "green", "message": message, "notify": false, "message_format": "html" }));	
 		});
@@ -77,6 +80,10 @@ app.post('/message', function(req, res){
 
 	req.end();
 });
+
+function createMessage(hit){
+	return '<li><a href=\"'+hit.url+'\">'+hit.title+'</a></li>';	
+}
 
 app.listen(port);
 console.log('server running at http://localhost:' + port)
