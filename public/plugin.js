@@ -13,10 +13,10 @@
 			"view_messages"
 		]},
 		"installable": {
-			"callbackUrl": "http://fcda25e7.ngrok.io/install"
+			"callbackUrl": "http://9d84e549.ngrok.io/install"
 		},
 		"webhook": {
-			"url": "http://fcda25e7.ngrok.io/message",
+			"url": "http://9d84e549.ngrok.io/message",
 			"pattern": "^/hascode",
 			"event": "room_message",
 			"name": "Message Listener"
