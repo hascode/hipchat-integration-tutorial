@@ -3,9 +3,9 @@
 	"description": "Search the hasCode.com Blog for articles for a given tag using /hascode tag",
 	"key": "com.hascode.hc.blogsearch",
 	"links": {
-		"homepage": "http://www.hascode.com/",
-		"self": "http://www.hascode.com/"
-	},
+        "self": "{{localBaseUrl}}/atlassian-connect.json",
+        "homepage": "{{localBaseUrl}}/atlassian-connect.json"
+    },
 	"capabilities": {
 		"hipchatApiConsumer": {
 			"scopes": [
@@ -13,10 +13,10 @@
 			"view_messages"
 		]},
 		"installable": {
-			"callbackUrl": "http://9d84e549.ngrok.io/install"
+			"callbackUrl": "{{localBaseUrl}}/install"
 		},
 		"webhook": {
-			"url": "http://9d84e549.ngrok.io/message",
+			"url": "{{localBaseUrl}}/message",
 			"pattern": "^/hascode",
 			"event": "room_message",
 			"name": "Message Listener"

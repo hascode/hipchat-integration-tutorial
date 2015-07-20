@@ -1,20 +1,7 @@
-# HipChat Integration Tutorial
+# Atlassian Add-on using Express
 
-A small tutorial writing up a HipChat integration using webhooks and a small server solution written in [Nodejs] and [Express].
+Congratulations! You've successfully created a HipChat Connect Add-on using the Express web application framework.
 
-Please feel free to have a look at [my blog] for the full tutorial.
+## What's next?
 
-## Running the server
-
-```
-    npm install
-    node server.js
-```
-
-----
-
-**2015 Micha Kops / hasCode.com**
-
-   [my blog]:http://www.hascode.com/
-   [Nodejs]:https://nodejs.org/
-   [Express]:http://expressjs.com/
+[Read the docs](https://bitbucket.org/atlassian/atlassian-connect-express/src/master/README.md#markdown-header-install-dependencies).
