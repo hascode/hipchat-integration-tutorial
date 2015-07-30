@@ -2,10 +2,8 @@ var http = require('http');
 
 module.exports = function (app, addon) {
     var hipchat = require('../lib/hipchat')(addon);
-    var basePath = '/wp-content/byTag.php?tag=';
-    var maxResults = 10;
     var options = {
-        host: 'www.hascode.com',
+        host: addon.config.searchHost(),
         path: '/',
         method: 'GET',
         headers: {
@@ -38,9 +36,8 @@ module.exports = function (app, addon) {
         function (req, res) {
             var term = req.body.item.message.message.split(' ')[1];
             console.log('searching for given term: ' + term);
-
             var message = "<a href=\"http://www.hascode.com/\">hasCode.com</a> blog articles for given term: <b>&quot;" + term + "&quot;</b>";
-            options.path = basePath + term;
+            options.path = addon.config.searchBasePath() + term;
             var clientRequest = http.request(options, function (clientResponse) {
                 var output = '';
                 clientResponse.setEncoding('utf8');
@@ -52,13 +49,13 @@ module.exports = function (app, addon) {
                 clientResponse.on('end', function () {
                     var hits = JSON.parse(output);
                     var hitsNum = hits.length;
-                    console.log(hitsNum + ' results for term ' + term + ' found, max-results set to: ' + maxResults);
+                    console.log(hitsNum + ' results for term ' + term + ' found, max-results set to: ' + addon.config.maxResultsDisplayed());
                     message += ' (' + hitsNum + ' hit/s) <ul>';
-                    message += hits.slice(0, maxResults).reduce(function (prev, cur) {
+                    message += hits.slice(0, addon.config.maxResultsDisplayed()).reduce(function (prev, cur) {
                         return createMessage(prev) + createMessage(cur);
                     }, "");
                     message += '</ul>';
-                    if (hits.length > maxResults) {
+                    if (hits.length > addon.config.maxResultsDisplayed()) {
                         message += '<b><a href="http://www.hascode.com/tag/' + term + '">Show all ' + hitsNum + ' results for &quot;' + term + '&quot;</a></b>'
                     }
 

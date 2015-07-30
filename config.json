@@ -64,7 +64,10 @@
       "adapter": "jugglingdb",
       "type": "sqlite3",
       "database": "blogsearch-clients.db"
-    }
+    },
+    "searchHost": "www.hascode.com",
+    "searchBasePath": "/wp-content/byTag.php?tag=",
+    "maxResultsDisplayed": 10
   },
   // This is the production add-on configuration, which is enabled by setting
   // the NODE_ENV=production environment variable.
@@ -86,6 +89,9 @@
     // these domains.
     "whitelist": [
       "*.hipchat.com"
-    ]
+    ],
+    "searchHost": "www.hascode.com",
+    "searchBasePath": "/wp-content/byTag.php?tag=",
+    "maxResultsDisplayed": 10
   }
 }
