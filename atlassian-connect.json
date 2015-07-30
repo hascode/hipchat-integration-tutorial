@@ -1,25 +1,29 @@
 {
-	"name": "hasCode.com Blog Search",
-	"description": "Search the hasCode.com Blog for articles for a given tag using /hascode tag",
-	"key": "com.hascode.hc.blogsearch",
-	"links": {
-        "self": "{{localBaseUrl}}/atlassian-connect.json",
-        "homepage": "{{localBaseUrl}}/atlassian-connect.json"
+  "name": "hasCode.com Blog Search",
+  "description": "Search the hasCode.com Blog for articles for a given tag using /hascode tag",
+  "key": "com.hascode.hc.blogsearch",
+  "vendor": {
+    "name": "Micha Kops",
+    "url": "http://www.micha-kops.com"
+  },
+  "links": {
+    "self": "{{localBaseUrl}}/atlassian-connect.json",
+    "homepage": "{{localBaseUrl}}/atlassian-connect.json"
+  },
+  "capabilities": {
+    "hipchatApiConsumer": {
+      "scopes": [
+        "send_notification"
+      ]
     },
-	"capabilities": {
-		"hipchatApiConsumer": {
-			"scopes": [
-			"send_notification",
-			"view_messages"
-		]},
-		"installable": {
-			"callbackUrl": "{{localBaseUrl}}/install"
-		},
-		"webhook": {
-			"url": "{{localBaseUrl}}/message",
-			"pattern": "^/hascode",
-			"event": "room_message",
-			"name": "Message Listener"
-		}
-	}
+    "installable": {
+      "callbackUrl": "{{localBaseUrl}}/installable"
+    },
+    "webhook": {
+      "url": "{{localBaseUrl}}/message",
+      "pattern": "^/hascode",
+      "event": "room_message",
+      "name": "Blog Search Command"
+    }
+  }
 }
