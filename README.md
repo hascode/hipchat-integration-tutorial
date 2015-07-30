@@ -8,7 +8,7 @@ Please feel free to have a look at [my blog] for the full tutorial.
 
 ```
     npm install
-    node server.js
+    node app.js
 ```
 
 ----
