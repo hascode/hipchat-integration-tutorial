@@ -59,7 +59,7 @@
     "localBaseUrl": "https://hascode-tagsearch.herokuapp.com",
     "store": {
       "adapter": "redis",
-      "url": "redis://h:pe3q4fs42c4u39dqlo73gfv1mn9@ec2-54-83-57-64.compute-1.amazonaws.com:10859"
+      "url": "$REDIS_URL"
     },
     // Make sure that your add-on can only be registered by the hosts on
     // these domains.
